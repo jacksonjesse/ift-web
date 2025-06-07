@@ -26,7 +26,7 @@ function AppRoutes({ authed, setAuthed }) {
         path="/tips"
         element={
           authed ? (
-            <TipsPage />
+            <TipsPage onLogout={() => setAuthed(false)} />
           ) : (
             <Navigate to="/" replace />
           )
@@ -36,7 +36,7 @@ function AppRoutes({ authed, setAuthed }) {
         path="/catoggio"
         element={
           authed ? (
-            <CatoggioPage />
+            <CatoggioPage onLogout={() => setAuthed(false)} />
           ) : (
             <Navigate to="/" replace />
           )
@@ -66,7 +66,7 @@ export default function App() {
   useEffect(() => {
     (async () => {
       try {
-        await axios.get(`${API_BASE}/afl-ladder?round=12&year=2025`, {
+        await axios.get(`${API_BASE}/afl-ladder`, {
           withCredentials: true,
         });
         setAuthed(true);

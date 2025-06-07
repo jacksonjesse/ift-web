@@ -66,17 +66,24 @@ function LadderRow({ pos, animate }) {
 function LadderPage({ onLogout }) {
   const [ladder, setLadder] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedRound, setSelectedRound] = useState(12);
+  const [selectedRound, setSelectedRound] = useState(null);
+  const [selectedYear, setSelectedYear] = useState(null);
 
   useEffect(() => {
     (async () => {
       setLoading(true);
       try {
+        const params = {};
+        if (selectedRound !== null) params.round = selectedRound;
+        if (selectedYear !== null) params.year = selectedYear;
+        const queryString = new URLSearchParams(params).toString();
         const { data } = await axios.get(
-          `${API_BASE}/afl-ladder?round=${selectedRound}&year=2025`,
+          `${API_BASE}/afl-ladder${queryString ? `?${queryString}` : ""}`,
           { withCredentials: true }
         );
         setLadder(data.positions);
+        setSelectedRound(data.round);
+        setSelectedYear(data.year);
       } catch {
         // Session expired, force logout
         onLogout();
@@ -93,7 +100,7 @@ function LadderPage({ onLogout }) {
         <CardContent>
           <h2 className="text-3xl font-bold text-blue-800 mb-6 text-center">AFL Ladder</h2>
           <div className="flex justify-center mb-6">
-            <Select value={selectedRound.toString()} onValueChange={val => setSelectedRound(Number(val))}>
+            <Select value={(selectedRound ?? 0).toString()} onValueChange={val => setSelectedRound(Number(val))}>
               <SelectTrigger className="w-56 text-lg">
                 <SelectValue placeholder="Select round…" />
               </SelectTrigger>
@@ -107,6 +114,16 @@ function LadderPage({ onLogout }) {
                       : `Round ${i}`}
                   </SelectItem>
                 ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="flex justify-center mb-6">
+            <Select value={(selectedYear ?? 2025).toString()} onValueChange={val => setSelectedYear(Number(val))}>
+              <SelectTrigger className="w-56 text-lg">
+                <SelectValue placeholder="Select year" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="2025">2025</SelectItem>
               </SelectContent>
             </Select>
           </div>
