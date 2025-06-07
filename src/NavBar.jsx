@@ -1,6 +1,6 @@
 import axios from "axios";
-import { Button } from "./ui/button";
-import logo from "../assets/ift@2x.png";
+import { Button } from "./components/ui/button";
+import logo from "./assets/ift@2x.png";
 
 const API_BASE = "http://localhost:8080";
 

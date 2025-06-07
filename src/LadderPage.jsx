@@ -9,7 +9,7 @@ import {
   SelectContent,
   SelectItem,
 } from "./components/ui/select";
-import NavBar from "./components/NavBar";
+import NavBar from "./NavBar";
 
 const API_BASE = "http://localhost:8080";
 

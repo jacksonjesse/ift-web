@@ -1,7 +1,7 @@
 import "./index.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import LoginPage from "./LoginPage";
+import LandingPage from "./LandingPage";
 import LadderPage from "./LadderPage";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
@@ -26,7 +26,7 @@ function AppRoutes({ authed, setAuthed }) {
           authed ? (
             <Navigate to="/ladder/afl" replace />
           ) : (
-            <LoginPage onLogin={() => setAuthed(true)} />
+            <LandingPage onLogin={() => setAuthed(true)} />
           )
         }
       />
