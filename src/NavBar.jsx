@@ -13,7 +13,9 @@ function NavBar({ onLogout, loggedIn = true }) {
         </div>
         {loggedIn && (
           <div className="flex items-center space-x-6">
-            <a href="#" className="text-white font-semibold hover:underline">AFL Ladder</a>
+            <a href="/tips" className="text-white font-semibold hover:underline">Tips</a>
+            <a href="/ladder/afl" className="text-white font-semibold hover:underline">AFL Ladder</a>
+            <a href="/catoggio" className="text-white font-semibold hover:underline">Catoggio</a>
             <Button
               onClick={async () => {
                 try {
