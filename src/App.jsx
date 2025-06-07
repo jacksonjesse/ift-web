@@ -1,8 +1,10 @@
 import "./index.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import CatoggioPage from "./CatoggioPage";
 import LandingPage from "./LandingPage";
 import LadderPage from "./LadderPage";
+import TipsPage from "./TipsPage";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 const API_BASE = "http://localhost:8080";
@@ -15,6 +17,26 @@ function AppRoutes({ authed, setAuthed }) {
         element={
           authed ? (
             <LadderPage onLogout={() => setAuthed(false)} />
+          ) : (
+            <Navigate to="/" replace />
+          )
+        }
+      />
+      <Route
+        path="/tips"
+        element={
+          authed ? (
+            <TipsPage />
+          ) : (
+            <Navigate to="/" replace />
+          )
+        }
+      />
+      <Route
+        path="/catoggio"
+        element={
+          authed ? (
+            <CatoggioPage />
           ) : (
             <Navigate to="/" replace />
           )
