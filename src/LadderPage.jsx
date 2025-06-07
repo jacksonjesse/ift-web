@@ -87,7 +87,7 @@ function LadderPage({ onLogout }) {
   }, [onLogout, selectedRound]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-tr from-blue-700 to-purple-700 p-4 flex flex-col items-center pt-20">
+    <div className="min-h-screen bg-white p-4 flex flex-col items-center pt-20">
       <NavBar onLogout={onLogout} />
       <Card className="w-full max-w-3xl shadow-2xl p-6 rounded-2xl bg-white/80 backdrop-blur">
         <CardContent>
